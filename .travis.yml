@@ -1,0 +1,11 @@
+language: go
+
+services:
+  - docker
+
+script:
+  - make test
+
+branches:
+  only:
+    - master
