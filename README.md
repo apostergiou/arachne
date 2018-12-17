@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/apostergiou/arachne.svg?branch=master)](https://travis-ci.com/apostergiou/arachne)
+
 # arachne
 
                              _
