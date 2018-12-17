@@ -8,13 +8,14 @@ HOST_PORT?=5300
 
 list:
 	@echo "Available commands:"
-	@echo "  build    - build the image"
-	@echo "  arachned - start the daemon"
-	@echo "  start    - start the arachne server locally"
-	@echo "  test     - run the tests in the container"
-	@echo "  install  - install the library as binary"
-	@echo "  deps     - check dependencies"
-	@echo "  lint     - run the golint tool"
+	@echo "  build    	- build the image"
+	@echo "  arachned 	- start the daemon"
+	@echo "  start    	- start the arachne server locally"
+	@echo "  test     	- run the tests in the container"
+	@echo "  install  	- install the library as binary"
+	@echo "  deps     	- check dependencies"
+	@echo "  list-deps	- check dependencies"
+	@echo "  lint     	- run the golint tool"
 
 build:
 	docker build -t arachne .
@@ -30,6 +31,7 @@ test: build
 		go test ./... -v
 
 # Commands for development
+
 install: fmt test
 	go install -v ./...
 
@@ -38,3 +40,6 @@ deps:
 
 lint:
 	golint `go list ./... | grep -v /vendor/`
+
+list-deps:
+	go list -f '{{ join .Deps  "\n"}}' . | grep arachne
