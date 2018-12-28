@@ -23,7 +23,7 @@ It listens for conventional DNS requests and resolves them using TLS.
 
 ## Quick start
 
-```shell
+```
 $ make start
 
 Building image...
@@ -38,7 +38,7 @@ This will start arachne with the resolvers set to Cloudflare's 1.1.1.1.
 
 Send a DNS query as normal (from another shell):
 
-```shell
+```
 $ kdig -d @localhost -p 5300 +tcp apostergiou.com
 ;; DEBUG: Querying for owner(apostergiou.com.), class(1), type(1), server(localhost), port(5300), protocol(TCP)
 ;; ->>HEADER<<- opcode: QUERY; status: NOERROR; id: 63742
@@ -57,7 +57,7 @@ apostergiou.com.        2947    IN      A       46.4.121.137
 
 Capture traffic and notice TLS usage:
 
-```shell
+```
 $ tshark -f "tcp port 853"
 
 1 0.000000000 192.168.2.101 → 1.1.1.1      TCP 74 56166 → 853 [SYN] Seq=0 Win=29200 Len=0 MSS=1460 SACK_PERM=1 TSval=3530330615 TSecr=0 WS=128
@@ -83,7 +83,7 @@ $ tshark -f "tcp port 853"
 
 Server logs:
 
-```shell
+```
 [server] 2018/12/09 21:29:46 Received DNS query for: apostergiou.com
 [server] 2018/12/09 21:29:46 Forwarding the query to: 1.1.1.1:853
 [server] 2018/12/09 21:29:46 Upstream answer: [apostergiou.com. 7809    IN      A       46.4.121.137]
@@ -93,7 +93,7 @@ Server logs:
 
 List available commands:
 
-```shell
+```
 $ make
 
 Available commands:
@@ -108,7 +108,7 @@ Available commands:
 
 To use other options:
 
-```shell
+```
 $ make start LISTEN="0.0.0.0:53" UPSTREAM="1.1.1.0:853" HOST_PORT="53"
 
 2018/12/09 23:25:54 Starting arachne
@@ -119,7 +119,7 @@ $ make start LISTEN="0.0.0.0:53" UPSTREAM="1.1.1.0:853" HOST_PORT="53"
 
 Start in the background:
 
-```shell
+```
 $ make arachned
 
 $ docker ps
@@ -155,7 +155,7 @@ $ docker logs -f 432b285273aa
 
 To run the tests execute:
 
-```shell
+```
 $ make test
 
 === RUN   TestSetupConfig
