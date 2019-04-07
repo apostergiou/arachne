@@ -14,7 +14,7 @@ list:
 	@echo "  test     	- run the tests in the container"
 	@echo "  install  	- install the library as binary"
 	@echo "  deps     	- check dependencies"
-	@echo "  list-deps	- check dependencies"
+	@echo "  list-deps	- list dependencies"
 	@echo "  lint     	- run the golint tool"
 
 build:
@@ -36,7 +36,7 @@ install: fmt test
 	go install -v ./...
 
 deps:
-	dep ensure -v
+	go mod graph
 
 lint:
 	golint `go list ./... | grep -v /vendor/`
